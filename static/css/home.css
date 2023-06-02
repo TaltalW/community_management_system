@@ -1,0 +1,28 @@
+.sidebar{
+    background-color: #eff2f5;
+    height: 820px;
+    color: black;
+    font-size:20px;
+}
+.btn
+.btn-danger
+{
+    height: 30px;
+    width: 40px;
+    margin-right: 20px;
+}
+.col-md-9{
+    margin-top: 40px;
+}
+.r2
+.r3{
+    margin-top: 60px;
+}
+.active{
+    background-color: #cae1f7;
+}
+.nav-sidebar{
+    padding-top: 40px;
+}
+
+
