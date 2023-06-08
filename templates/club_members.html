@@ -16,9 +16,9 @@
         <div class="col-md-2 sidebar">
             <ul class="nav nav-sidebar">
                 <li class="t1">社团概况</li>
-                <li><a href="home.html">社团详情<span class="sr-only">(current)</span></a></li>
-                <li><a href="club_lists.html">社团列表</a></li>
-                <li class="active"><a href="club_members.html">社团成员</a></li>
+                <li><a href="http://127.0.0.1:5000/home">社团详情<span class="sr-only">(current)</span></a></li>
+                <li><a href="http://127.0.0.1:5000/club_lists">社团列表</a></li>
+                <li class="active"><a href="http://127.0.0.1:5000/club_members">社团成员</a></li>
 
             </ul>
             <ul class="nav nav-sidebar">
@@ -36,31 +36,24 @@
                 <div class="panel-heading">
                     <h2>社团成员</h2>
                 </div>
-                <div class="panel-body">
-                    <table class="table">
-                        <tr>
-                            <th>序号</th>
-                            <th>姓名</th>
-                            <th>学号</th>
-                            <th>学院</th>
-                        </tr>
-                        {% for item in clublists %}
-
-                        {% endfor %}
-                        <tr class="warning">
-                            <td></td>
-                            <td>null</td>
-                            <td>null</td>
-                            <td>null</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>null</td>
-                            <td>null</td>
-                            <td>null</td>
-                        </tr>
-                    </table>
-                </div>
+                <form method=['POST'] action="/club_members">
+                    <div class="panel-body">
+                        <table class="table">
+                            <tr>
+                                <th>姓名</th>
+                                <th>学号</th>
+                                <th>学院</th>
+                            </tr>
+                            {% for item in member %}
+                                <tr>
+                                    <td>{{ item.Sname }}</td>
+                                    <td>{{ item.Sno }}</td>
+                                    <td>{{ item.Sdept }}</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </form>
             </div>
 
         </div>

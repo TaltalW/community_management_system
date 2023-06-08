@@ -98,5 +98,24 @@ def club_lists():
     print(clublists)
     return render_template("club_lists.html", clublists=clublists)
 
+@app.route("/club_members", methods=['POST', 'GET'])
+def club_members():
+    conn = MySQLdb.Connection(**DB_CONF)
+    cursor = conn.cursor()
+    sql = 'SELECT Sname FROM member_login WHERE login=1'
+    cursor.execute(sql)
+    conn.commit()
+    username = cursor.fetchone()
+    sql = 'SELECT community FROM student where Sno="{}"'.format(username.get('Sname'))
+    cursor.execute(sql)
+    conn.commit()
+    com = cursor.fetchone()
+    sql = 'SELECT Sname, Sno, Sdept FROM student where community="{}"'.format(com.get('community'))
+    cursor.execute(sql)
+    conn.commit()
+    member = cursor.fetchall()
+    print(member)
+    return render_template("club_members.html", member=member)
+
 if __name__== "__main__":
     app.run(debug=True)
