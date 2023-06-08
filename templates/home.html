@@ -12,7 +12,7 @@
 <script scr="../static/js/jquery.js"></script>
 <script scr="../static/plugins/bootstrap-3.4.1/js/bootstrap.js"></script>
 <script scr="../static/js/index.js"></script>
-
+<script scr="../static/js/home.js"></script>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-2 sidebar">
@@ -28,7 +28,7 @@
                 <li><a href="change_perinfo.html">信息修改</a></li>
             </ul>
             <ul class="nav nav-sidebar">
-                <li class="t1">用户：</li>
+                <li class="t1">用户</li>
                 <li><a href="#">退出登录<span class="sr-only">(current)</span></a></li>
             </ul>
         </div>
@@ -36,8 +36,9 @@
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <h2>社团详情</h2>
-                    <button type="submit" class="btn btn-danger">退出社团</button>
+                    <button type="button" class="btn btn-danger" id="exit-com">退出社团</button>
                 </div>
+                <form method=['POST'] action="/home">
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-4">
@@ -45,9 +46,7 @@
                                 <div class="panel-heading">
                                     <h3 class="panel-title">社团名</h3>
                                 </div>
-                                <div class="panel-body">
-                                    Panel content
-                                </div>
+                                <div class="panel-body">{{Cname}}</div>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -55,9 +54,7 @@
                                 <div class="panel-heading">
                                     <h3 class="panel-title">社团编号</h3>
                                 </div>
-                                <div class="panel-body">
-                                    Panel content
-                                </div>
+                                <div class="panel-body">{{Cno}}</div>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -65,9 +62,7 @@
                                 <div class="panel-heading">
                                     <h3 class="panel-title">社团类型</h3>
                                 </div>
-                                <div class="panel-body">
-                                    Panel content
-                                </div>
+                                <div class="panel-body">{{Ctype}}</div>
                             </div>
                         </div>
                     </div>
@@ -77,9 +72,7 @@
                                 <div class="panel-heading">
                                     <h3 class="panel-title">社长</h3>
                                 </div>
-                                <div class="panel-body">
-                                    Panel content
-                                </div>
+                                <div class="panel-body">{{cmaster}}</div>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -87,9 +80,7 @@
                                 <div class="panel-heading">
                                     <h3 class="panel-title">社团等级</h3>
                                 </div>
-                                <div class="panel-body">
-                                    Panel content
-                                </div>
+                                <div class="panel-body">{{Crank}}</div>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -97,9 +88,7 @@
                                 <div class="panel-heading">
                                     <h3 class="panel-title">隶属学院</h3>
                                 </div>
-                                <div class="panel-body">
-                                    Panel content
-                                </div>
+                                <div class="panel-body">{{Cdept}}</div>
                             </div>
                         </div>
                     </div>
@@ -109,9 +98,7 @@
                                 <div class="panel-heading">
                                     <h3 class="panel-title">社团人数</h3>
                                 </div>
-                                <div class="panel-body">
-                                    Panel content
-                                </div>
+                                <div class="panel-body">{{Cnum}}</div>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -119,9 +106,7 @@
                                 <div class="panel-heading">
                                     <h3 class="panel-title">活动地点</h3>
                                 </div>
-                                <div class="panel-body">
-                                    Panel content
-                                </div>
+                                <div class="panel-body">{{Crno}}</div>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -129,13 +114,12 @@
                                 <div class="panel-heading">
                                     <h3 class="panel-title">活动时间</h3>
                                 </div>
-                                <div class="panel-body">
-                                    Panel content
-                                </div>
+                                <div class="panel-body">{{Cdata}}</div>
                             </div>
                         </div>
                     </div>
                 </div>
+                </form>
             </div>
 
         </div>
