@@ -9,123 +9,132 @@
 
 </head>
 <body>
-<script scr="../static/js/jquery.js"></script>
+<script scr="http://127.0.0.1:5000/static/js/jquery.min.js"></script>
 <script scr="../static/plugins/bootstrap-3.4.1/js/bootstrap.js"></script>
 <script scr="../static/js/index.js"></script>
-<script scr="../static/js/home.js"></script>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-2 sidebar">
             <ul class="nav nav-sidebar">
                 <li class="t1">社团概况</li>
-                <li class="active"><a href="http://127.0.0.1:5000/home">社团详情<span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="http://127.0.0.1:5000/home">社团详情<span
+                        class="sr-only">(current)</span></a></li>
                 <li><a href="http://127.0.0.1:5000/club_lists">社团列表</a></li>
                 <li><a href="http://127.0.0.1:5000/club_members">社团成员</a></li>
             </ul>
             <ul class="nav nav-sidebar">
                 <li class="t1">个人信息管理</li>
-                <li ><a href="personal_info.html">个人信息<span class="sr-only">(current)</span></a></li>
-                <li><a href="change_perinfo.html">信息修改</a></li>
+                <li><a href="http://127.0.0.1:5000/personal_info">个人信息<span class="sr-only">(current)</span></a>
+                </li>
+                <li><a href="http://127.0.0.1:5000/change_info">信息修改</a></li>
             </ul>
             <ul class="nav nav-sidebar">
                 <li class="t1">用户</li>
-                <li><a href="#">退出登录<span class="sr-only">(current)</span></a></li>
+                <li><a href="http://127.0.0.1:5000/log_in">退出登录<span class="sr-only">(current)</span></a></li>
             </ul>
         </div>
         <div class="col-md-9">
-            <div class="panel panel-info">
-                <div class="panel-heading">
-                    <h2>社团详情</h2>
-                    <button type="button" class="btn btn-danger" id="exit-com">退出社团</button>
-                </div>
-                <form method=['POST'] action="/home">
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">社团名</h3>
-                                </div>
-                                <div class="panel-body">{{Cname}}</div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">社团编号</h3>
-                                </div>
-                                <div class="panel-body">{{Cno}}</div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">社团类型</h3>
-                                </div>
-                                <div class="panel-body">{{Ctype}}</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">社长</h3>
-                                </div>
-                                <div class="panel-body">{{cmaster}}</div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">社团等级</h3>
-                                </div>
-                                <div class="panel-body">{{Crank}}</div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">隶属学院</h3>
-                                </div>
-                                <div class="panel-body">{{Cdept}}</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">社团人数</h3>
-                                </div>
-                                <div class="panel-body">{{Cnum}}</div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">活动地点</h3>
-                                </div>
-                                <div class="panel-body">{{Crno}}</div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">活动时间</h3>
-                                </div>
-                                <div class="panel-body">{{Cdata}}</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                </form>
-            </div>
+            <form method=['POST'] action="/home">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h2>社团详情</h2>
+                        <button type="submit" class="btn btn-danger" id="exit_com">退出社团</button>
+                        <script>
+                            let exit = document.querySelector('#exit_com')
+                            exit.addEventListener('click', async function () {
+                                const response = await fetch('http://127.0.0.1:5000/exit_com', {
+                                    method: 'POST',
+                                    // headers: {
+                                    //     'Content-Type': 'application/json;'
+                                    // },
+                                })
 
+                                const res = response.json()
+                                res.then(
+                                    data => {
+                                        console.log(data)
+                                    }
+                                )
+                            })
+                        </script>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">社团名</h3>
+                                    </div>
+                                    <div class="panel-body">{{ Cname }}</div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">社团编号</h3>
+                                    </div>
+                                    <div class="panel-body">{{ Cno }}</div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">社团类型</h3>
+                                    </div>
+                                    <div class="panel-body">{{ Ctype }}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">社长</h3>
+                                    </div>
+                                    <div class="panel-body">{{ Csname }}</div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">社团等级</h3>
+                                    </div>
+                                    <div class="panel-body">{{ Crank }}</div>
+                                </div>
+                            </div>
+                           <div class="col-md-4">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">社团人数</h3>
+                                    </div>
+                                    <div class="panel-body">{{ Cnum }}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-md-4">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">活动地点</h3>
+                                    </div>
+                                    <div class="panel-body">{{ Crno }}</div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">成立时间</h3>
+                                    </div>
+                                    <div class="panel-body">{{ Cdate }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>
-
-
 </body>
 </html>

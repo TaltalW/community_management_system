@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="../static/css/home.css">
 </head>
 <body>
-<script scr="../static/js/jquery.js"></script>
+<script scr="../static/js/jquery.min.js"></script>
 <script scr="../static/plugins/bootstrap-3.4.1/js/bootstrap.js"></script>
 <script scr="../static/js/index.js"></script>
-
+<script scr="../static/js/join_in.js"></script>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-2 sidebar">
@@ -23,12 +23,13 @@
             </ul>
             <ul class="nav nav-sidebar">
                 <li class="t1">个人信息管理</li>
-                <li><a href="personal_info.html">个人信息<span class="sr-only">(current)</span></a></li>
-                <li><a href="change_perinfo.html">信息修改</a></li>
+                <li><a href="http://127.0.0.1:5000/personal_info">个人信息<span class="sr-only">(current)</span></a>
+                </li>
+                <li><a href="http://127.0.0.1:5000/change_info">信息修改</a></li>
             </ul>
             <ul class="nav nav-sidebar">
                 <li class="t1">用户</li>
-                <li><a href="#">退出登录<span class="sr-only">(current)</span></a></li>
+                <li><a href="http://127.0.0.1:5000/log_in">退出登录<span class="sr-only">(current)</span></a></li>
             </ul>
         </div>
         <div class="col-md-9">
@@ -44,12 +45,38 @@
                                 <th>社团名</th>
                                 <th>申请加入</th>
                             </tr>
+                            <script>
+
+                            </script>
                             {% for item in clublists %}
                                 <tr>
-                                    <td>{{ item.Cno }}</td>
-                                    <td>{{ item.Cname }}</td>
+                                    <td id='Cno'>{{ item.Cno }}</td>
+                                    <td id='Cname'>{{ item.Cname }}</td>
                                     <td>
-                                        <input class="btn btn-primary" type="submit" value="申请">
+                                        <input class="btn btn-primary" type="submit" id="join" value="申请">
+                                        <script>
+                                            let Join = document.querySelector('#join')
+                                            Join.addEventListener('click', async function () {
+
+                                                const format = new FormData()
+                                                format.append('Cno', '{{ item.Cno }}')
+                                                format.append('Cname', '{{ item.Cname }}')
+                                                const response = await fetch('http://127.0.0.1:5000/join_in', {
+                                                    method: 'POST',
+                                                    // headers: {
+                                                    //     'Content-Type': 'application/json;'
+                                                    // },
+                                                    body: format
+                                                })
+
+                                                const res = response.json()
+                                                res.then(
+                                                    data => {
+                                                        console.log(data)
+                                                    }
+                                                )
+                                            })
+                                        </script>
                                     </td>
                                 </tr>
                             {% endfor %}

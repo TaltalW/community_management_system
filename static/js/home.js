@@ -1,4 +1,4 @@
-$('#exit-com').on('click', function () {
+$('#exit_com').on('click', function () {
         $.ajax({
             url: '/exit_com',
             type: 'post',
