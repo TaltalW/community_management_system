@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/plugins/bootstrap-3.4.1/css/bootstrap.css">
+    <link rel="stylesheet" href="../static/plugins/font-awesome-4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="../static/css/home.css">
+    <link rel="stylesheet" href="../static/css/change_info.css">
+</head>
+<body>
+<script scr="../static/js/jquery.min.js"></script>
+<script scr="../static/plugins/bootstrap-3.4.1/js/bootstrap.js"></script>
+<script scr="../static/js/index.js"></script>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li class="t1">社团概况</li>
+                <li><a href="http://127.0.0.1:5000/leader_home">社团详情<span class="sr-only">(current)</span></a></li>
+                <li><a href="http://127.0.0.1:5000/leader_club_lists">社团列表</a></li>
+                <li><a href="http://127.0.0.1:5000/leader_club_members">社团成员</a></li>
+                <li class="active"><a href="http://127.0.0.1:5000/leader_change_clubinfo">信息修改</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li class="t1">个人信息管理</li>
+                <li><a href="http://127.0.0.1:5000/leader_personal_info">个人信息<span class="sr-only">(current)</span></a></li>
+                <li><a href="http://127.0.0.1:5000/leader_change_perinfo">信息修改</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li class="t1">用户</li>
+                <li><a href="http://127.0.0.1:5000/log_in">退出登录<span class="sr-only">(current)</span></a></li>
+            </ul>
+        </div>
+        <div class="col-md-9">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h2>修改个人信息</h2>
+                </div>
+                <div class="panel-body">
+                    <form class="row">
+                        <div class="col-md-7 col-md-offset-2">
+                            <form method=['POST'] action="/leader_change_perinfo">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1" class="c1">姓名</label>
+                                    <input class="form-control" type="text" id="name" placeholder="请输入姓名">
+                                    <label for="exampleInputEmail1" class="c1">学号</label>
+                                    <input class="form-control" type="text" id="sno" placeholder="请输入学号">
+                                    <label for="exampleInputEmail1" class="c1">性别</label>
+                                    <input class="form-control" type="text" id="sex" placeholder="请输入性别">
+                                    <label for="exampleInputEmail1" class="c1">密码</label>
+                                    <input type="password" class="form-control" id="pwd"
+                                           placeholder="请输入密码">
+                                    <label for="exampleInputEmail1" class="c1">学院</label>
+                                    <input type="text" class="form-control" id="dept"
+                                           placeholder="请输入学院">
+                                    <label for="exampleInputEmail1" class="c1">社团</label>
+                                    <input type="text" class="form-control" id="com"
+                                           placeholder="请输入社团">
+                                    <!--<label for="exampleInputEmail1" class="c1">职位</label>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="status" id="status" value="master"
+                                                   checked>
+                                            社长
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="status" id="status" value=member">
+                                            成员
+                                        </label>
+                                    </div>-->
+                                    <label for="exampleInputEmail1" class="c1">微信</label>
+                                    <input type="text" class="form-control" id="wechat"
+                                           placeholder="请输入微信号">
+                                    <label for="exampleInputEmail1" class="c1">电话</label>
+                                    <input type="text" class="form-control" id="phone"
+                                           placeholder="请输入电话号码">
+                                    <button type="submit" class="btn btn-primary btn-lg btn-block" id="sub">确定
+                                    </button>
+                                    <script>
+                                        let Submit = document.querySelector('#sub')
+
+                                        console.log("1:" + document.getElementById("name").value)
+
+                                        Submit.addEventListener('click', async function () {
+                                            const format = new FormData()
+                                            format.append('name', document.getElementById("name").value)
+                                            format.append('sno', document.getElementById("sno").value)
+                                            format.append('sex', document.getElementById("sex").value)
+                                            format.append('pwd', document.getElementById("pwd").value)
+                                            format.append('dept', document.getElementById("dept").value)
+                                            format.append('com', document.getElementById("com").value)
+                                            format.append('wechat', document.getElementById("wechat").value)
+                                            format.append('phone', document.getElementById("phone").value)
+                                            const response = await fetch('http://127.0.0.1:5000//leader_change_perinfo', {
+                                                method: 'POST',
+                                                // headers: {
+                                                //     'Content-Type': 'application/json; charset=utf-8'
+                                                // },
+                                                body: format
+                                            })
+
+                                            const res = response.json()
+                                            res.then(
+                                                data => {
+                                                    console.log(data)
+                                                }
+                                            )
+                                        })
+                                    </script>
+                                </div>
+                            </form>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+</body>
+</html>

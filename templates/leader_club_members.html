@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/plugins/bootstrap-3.4.1/css/bootstrap.css">
+    <link rel="stylesheet" href="../static/plugins/font-awesome-4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="../static/css/home.css">
+</head>
+<body>
+<script scr="../static/js/jquery.js"></script>
+<script scr="../static/plugins/bootstrap-3.4.1/js/bootstrap.js"></script>
+<script scr="../static/js/index.js"></script>
+<script scr="../static/js/leader_remove_members.js"></script>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li class="t1">社团概况</li>
+                <li><a href="http://127.0.0.1:5000/leader_home">社团详情<span class="sr-only">(current)</span></a></li>
+                <li><a href="http://127.0.0.1:5000/leader_club_lists">社团列表</a></li>
+                <li class="active"><a href="http://127.0.0.1:5000/leader_club_members">社团成员</a></li>
+                <li><a href="http://127.0.0.1:5000/leader_change_clubinfo">信息修改</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li class="t1">个人信息管理</li>
+                <li><a href="http://127.0.0.1:5000/leader_personal_info">个人信息<span class="sr-only">(current)</span></a></li>
+                <li><a href="http://127.0.0.1:5000/leader_change_perinfo">信息修改</a></li>
+            </ul>
+            <ul class="nav nav-sidebar">
+                <li class="t1">用户</li>
+                <li><a href="http://127.0.0.1:5000/log_in">退出登录<span class="sr-only">(current)</span></a></li>
+            </ul>
+        </div>
+        <div class="col-md-9">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h2>社团成员</h2>
+                </div>
+                <form method=['POST'] action="/leader_club_members">
+                    <div class="panel-body">
+                        <table class="table table-hover" >
+                            <tr>
+                                <th>姓名</th>
+                                <th>学号</th>
+                                <th>学院</th>
+                                <th>电话</th>
+                                <th>移除成员</th>
+                            </tr>
+                            <script>
+
+                            </script>
+
+                                {% for item in member_list %}
+                                    <tr>
+                                        <td id="Sname">{{ item.Sname }}</td>
+                                        <td id="Sno">{{ item.Sno }}</td>
+                                        <td id="Sdept">{{ item.Sdept }}</td>
+                                        <td id="Tel">{{ item.Tel }}</td>
+                                        <td>
+                                            <input type="submit" class="btn btn-danger" id="remove_mem" value="移除">
+                                            <script>
+                                                let Remove = document.querySelector('#remove_mem')
+                                                const format = new FormData()
+                                                console.log('name:'+'{{ item.Sname }}')
+                                                format.append('Sname', '{{ item.Sname }}')
+                                                format.append('Sno', '{{ item.Sno }}')
+                                                format.append('Sdept', '{{ item.Sdept }}')
+                                                format.append('Tel', '{{ item.Tel }}')
+                                                Remove.addEventListener('click', async function () {
+                                                    const response = await fetch('http://127.0.0.1:5000/leader_remove_members', {
+                                                        method: 'POST',
+                                                        //headers: {
+                                                        //     'Content-Type': 'application/json;'
+                                                         //},
+                                                        body: format
+                                                    })
+
+                                                    const res = response.json()
+                                                    res.then(
+                                                        data => {
+                                                            console.log(data)
+                                                        }
+                                                    )
+                                                })
+                                            </script>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                        </table>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
