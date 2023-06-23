@@ -17,15 +17,16 @@
         <div class="col-md-2 sidebar">
             <ul class="nav nav-sidebar">
                 <li class="t1">社团概况</li>
-                <li><a href="http://127.0.0.1:5000/home">社团详情<span class="sr-only">(current)</span></a></li>
-                <li><a href="http://127.0.0.1:5000/club_lists">社团列表</a></li>
-                <li><a href="http://127.0.0.1:5000/club_members">社团成员</a></li>
+                <li><a href="http://127.0.0.1:5000/leader_home">社团详情<span class="sr-only">(current)</span></a></li>
+                <li><a href="http://127.0.0.1:5000/leader_club_lists">社团列表</a></li>
+                <li><a href="http://127.0.0.1:5000/leader_club_members">社团成员</a></li>
+                <li><a href="http://127.0.0.1:5000/leader_change_clubinfo">信息修改</a></li>
             </ul>
             <ul class="nav nav-sidebar">
                 <li class="t1">个人信息管理</li>
-                <li><a href="http://127.0.0.1:5000/personal_info">个人信息<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="active"><a href="http://127.0.0.1:5000/change_info">信息修改</a></li>
+                <li><a href="http://127.0.0.1:5000/leader_personal_info">个人信息<span class="sr-only">(current)</span></a></li>
+                <li><a href="http://127.0.0.1:5000/leader_change_perinfo">信息修改</a></li>
+                <li class="active"><a href="http://127.0.0.1:5000/leader_add_member">添加成员</a></li>
             </ul>
             <ul class="nav nav-sidebar">
                 <li class="t1">用户</li>
@@ -35,12 +36,12 @@
         <div class="col-md-9">
             <div class="panel panel-info">
                 <div class="panel-heading">
-                    <h2>修改个人信息</h2>
+                    <h2>成员录入</h2>
                 </div>
                 <div class="panel-body">
                     <form class="row">
                         <div class="col-md-7 col-md-offset-2">
-                            <form method=['POST']>
+                            <form method=['POST'] action="/leader_add_member">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1" class="c1">姓名</label>
                                     <input class="form-control" type="text" id="name" placeholder="请输入姓名">
@@ -78,11 +79,11 @@
                                     <button type="submit" class="btn btn-primary btn-lg btn-block" id="sub">确定
                                     </button>
                                     <script>
-                                        let Submit = document.querySelector('#sub')
+                                        let add = document.querySelector('#sub')
 
                                         console.log("1:" + document.getElementById("name").value)
 
-                                        Submit.addEventListener('click', async function () {
+                                        add.addEventListener('click', async function () {
                                             const format = new FormData()
                                             format.append('name', document.getElementById("name").value)
                                             format.append('sno', document.getElementById("sno").value)
@@ -92,7 +93,7 @@
                                             format.append('com', document.getElementById("com").value)
                                             format.append('wechat', document.getElementById("wechat").value)
                                             format.append('phone', document.getElementById("phone").value)
-                                            const response = await fetch('http://127.0.0.1:5000/change_info', {
+                                            const response = await fetch('http://127.0.0.1:5000//leader_add_member', {
                                                 method: 'POST',
                                                 // headers: {
                                                 //     'Content-Type': 'application/json; charset=utf-8'
