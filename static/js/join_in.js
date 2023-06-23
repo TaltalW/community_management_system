@@ -8,7 +8,7 @@ $('#join').on('click', function () {
         },
         dataType: "json",
         success: function (res) {
-            console.log(res)
+            console.log(res);
         }
     })
 })

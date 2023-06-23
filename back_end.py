@@ -11,13 +11,11 @@ DB_CONF = {
     'host': '127.0.0.1',
     'port': 3306,
     'user': 'root',
-    'passwd': 'Tal@029118',
+    'passwd': '',
     'db': 'community_manager',
     'charset': 'utf8',
     'cursorclass': cursors.DictCursor
 }
-user = ""
-user_status = ""
 
 app = flask.Flask(__name__)
 
@@ -94,14 +92,14 @@ def exit_com():
     conn.commit()
     username = cursor.fetchone()
     print(username)
-    sql = 'SELECT community FROM student where Sno="{}"'.format(username.get('Sname'))
+    sql = 'SELECT community FROM student where Sno="{}"'.format(username.get('Sno'))
     cursor.execute(sql)
     conn.commit()
     com = cursor.fetchone()
     sql = 'UPDATE community SET Cnum = Cnum - 1 where Cname="{}"'.format(com.get('community'))
     cursor.execute(sql)
     conn.commit()
-    sql = 'UPDATE student SET community = NULL where Sno="{}"'.format(username.get('Sname'))
+    sql = 'UPDATE student SET community = NULL where Sno="{}"'.format(username.get('Sno'))
     cursor.execute(sql)
     conn.commit()
     print("success")
@@ -136,7 +134,7 @@ def join_in():
     sql = 'UPDATE community SET Cnum = Cnum + 1 where Cname="{}"'.format(cname)
     cursor.execute(sql)
     conn.commit()
-    sql = 'UPDATE student SET community = "{}" where Sno="{}"'.format(cname, Sno.get('Sname'))
+    sql = 'UPDATE student SET community = "{}" where Sno="{}"'.format(cname, Sno.get('Sno'))
     cursor.execute(sql)
     conn.commit()
     print("success")
